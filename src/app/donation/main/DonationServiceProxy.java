@@ -1,6 +1,8 @@
 package app.donation.main;
 
 import java.util.List;
+
+import app.donation.model.Donation;
 import app.donation.model.Donor;
 import retrofit.Call;
 import retrofit.http.Body;
@@ -25,4 +27,19 @@ public interface DonationServiceProxy
 
   @DELETE("/api/donors")
   Call<String> deleteAllDonors();
+  
+  @GET("/api/donations")
+  Call<List<Donation>> getDonations();
+  
+  @GET("/api/donations/{id}")
+  Call<List<Donation>> getDonoation(@Path("id") Long id);
+
+  @POST("/api/donations")
+  Call<Donation> createDonation(@Body Donation donation);
+
+  @DELETE("/api/donations/{id}")
+  Call<Donation> deleteDonation(@Path("id") Long id);
+  
+  @DELETE("/api/donations")
+  Call<String> deleteAllDonations();
 }

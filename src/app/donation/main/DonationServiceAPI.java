@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import app.donation.model.Donation;
 import app.donation.model.Donor;
 import retrofit.Call;
 import retrofit.GsonConverterFactory;
@@ -60,4 +62,33 @@ public class DonationServiceAPI
     Response<Donor> returnedDonor = call.execute();
     return returnedDonor.body();
   }
+  
+  public List<Donation> getAllDonations() throws Exception
+  {
+    Call<List<Donation>> call = (Call<List<Donation>>) service.getDonations();
+    Response<List<Donation>> donations = call.execute();
+    return donations.body();
+  }
+  
+  public Donation createDonation(Donation newDonation) throws Exception
+  {
+    Call<Donation> call = (Call<Donation>) service.createDonation(newDonation);
+    Response<Donation> returnedDonation = call.execute();
+    return returnedDonation.body();
+  }
+  
+  public int deleteDonation(Long id) throws Exception
+  {
+	Call<Donation> call =  service.deleteDonation(id);
+	Response<Donation> val  = call.execute();
+    return val.code();
+  }
+  
+  public int deleteAllDonations() throws Exception
+  {
+	Call<String> call =  service.deleteAllDonations();
+	Response<String> val  = call.execute();
+    return val.code();
+  }
+
 }
