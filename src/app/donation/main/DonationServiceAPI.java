@@ -65,7 +65,7 @@ public class DonationServiceAPI
   
   public List<Donation> getAllDonations() throws Exception
   {
-    Call<List<Donation>> call = (Call<List<Donation>>) service.getDonations();
+    Call<List<Donation>> call = (Call<List<Donation>>) service.getAllDonations();
     Response<List<Donation>> donations = call.execute();
     return donations.body();
   }

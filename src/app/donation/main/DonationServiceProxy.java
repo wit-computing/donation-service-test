@@ -29,17 +29,17 @@ public interface DonationServiceProxy
   Call<String> deleteAllDonors();
   
   @GET("/api/donations")
-  Call<List<Donation>> getDonations();
+  Call<List<Donation>> getAllDonations();
+  
+  @DELETE("/api/donations")
+  Call<String> deleteAllDonations();
   
   @GET("/api/donations/{id}")
-  Call<List<Donation>> getDonoation(@Path("id") Long id);
+  Call<List<Donation>> getDonation(@Path("id") Long id);
 
   @POST("/api/donations")
   Call<Donation> createDonation(@Body Donation donation);
 
   @DELETE("/api/donations/{id}")
   Call<Donation> deleteDonation(@Path("id") Long id);
-  
-  @DELETE("/api/donations")
-  Call<String> deleteAllDonations();
 }
