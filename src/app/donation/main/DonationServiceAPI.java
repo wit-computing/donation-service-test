@@ -21,10 +21,10 @@ public class DonationServiceAPI
   {
     Gson gson = new GsonBuilder().create();
 
-    Retrofit retrofit = new Retrofit.Builder()
-        .baseUrl(service_url)
-        .addConverterFactory(GsonConverterFactory.create(gson))
-        .build();
+    Retrofit retrofit = new Retrofit.Builder().baseUrl(service_url)
+                             .addConverterFactory(GsonConverterFactory
+                             .create(gson))
+                             .build();
     service = retrofit.create(DonationServiceProxy.class);
   }
 
@@ -34,7 +34,7 @@ public class DonationServiceAPI
     Response<List<Donor>> donors = call.execute();
     return donors.body();
   }
-  
+
   public Donor getDonor(Long id) throws Exception
   {
     Call<Donor> call = (Call<Donor>) service.getDonor(id);
@@ -44,51 +44,57 @@ public class DonationServiceAPI
 
   public int deleteDonor(Long id) throws Exception
   {
-	Call<Donor> call =  service.deleteDonor(id);
-	Response<Donor> val  = call.execute();
+    Call<Donor> call = service.deleteDonor(id);
+    Response<Donor> val = call.execute();
     return val.code();
   }
-  
+
   public int deleteAllDonors() throws Exception
   {
-	Call<String> call =  service.deleteAllDonors();
-	Response<String> val  = call.execute();
+    Call<String> call = service.deleteAllDonors();
+    Response<String> val = call.execute();
     return val.code();
   }
-  
+
   public Donor createDonor(Donor newDonor) throws Exception
   {
     Call<Donor> call = (Call<Donor>) service.createDonor(newDonor);
     Response<Donor> returnedDonor = call.execute();
     return returnedDonor.body();
   }
-  
+
   public List<Donation> getAllDonations() throws Exception
   {
     Call<List<Donation>> call = (Call<List<Donation>>) service.getAllDonations();
     Response<List<Donation>> donations = call.execute();
     return donations.body();
   }
-  
-  public Donation createDonation(Donation newDonation) throws Exception
+
+  public List<Donation> getDonations(Long id) throws Exception
   {
-    Call<Donation> call = (Call<Donation>) service.createDonation(newDonation);
+    Call<List<Donation>> call = (Call<List<Donation>>) service.getDonations(id);
+    Response<List<Donation>> donations = call.execute();
+    return donations.body();
+  }
+  
+  public Donation createDonation(Long id, Donation newDonation) throws Exception
+  {
+    Call<Donation> call = (Call<Donation>) service.createDonation(id, newDonation);
     Response<Donation> returnedDonation = call.execute();
     return returnedDonation.body();
   }
-  
-  public int deleteDonation(Long id) throws Exception
+
+  public int deleteDonation(Long id, Long donationId) throws Exception
   {
-	Call<Donation> call =  service.deleteDonation(id);
-	Response<Donation> val  = call.execute();
-    return val.code();
-  }
-  
-  public int deleteAllDonations() throws Exception
-  {
-	Call<String> call =  service.deleteAllDonations();
-	Response<String> val  = call.execute();
+    Call<Donation> call = service.deleteDonation(id, donationId);
+    Response<Donation> val = call.execute();
     return val.code();
   }
 
+  public int deleteAllDonations() throws Exception
+  {
+    Call<String> call = service.deleteAllDonations();
+    Response<String> val = call.execute();
+    return val.code();
+  }
 }

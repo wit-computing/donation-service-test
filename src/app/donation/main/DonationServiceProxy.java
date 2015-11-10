@@ -34,12 +34,15 @@ public interface DonationServiceProxy
   @DELETE("/api/donations")
   Call<String> deleteAllDonations();
   
-  @GET("/api/donations/{id}")
-  Call<List<Donation>> getDonation(@Path("id") Long id);
+  @GET("/api/donors/{id}/donations")
+  Call<List<Donation>> getDonations(@Path("id") Long id);
+  
+  @GET("/api/donors/{id}/donations/{donationId}")
+  Call<Donation> getDonation(@Path("id") Long id, @Path("id") Long donationId);
 
-  @POST("/api/donations")
-  Call<Donation> createDonation(@Body Donation donation);
+  @POST("/api/donors/{id}/donations")
+  Call<Donation> createDonation(@Path("id") Long id, @Body Donation donation);
 
-  @DELETE("/api/donations/{id}")
-  Call<Donation> deleteDonation(@Path("id") Long id);
+  @DELETE("/api/donors/{id}/donatinos/{donationId}")
+  Call<Donation> deleteDonation(@Path("id") Long id, @Path("id") Long donationId);
 }
