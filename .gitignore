@@ -1,10 +1,2 @@
-# Ignore all dotfiles...
-.*
-# except for .gitignore
-!.gitignore
-!.classpath
-!.project
-
-
-# Ignore Play! working directory #
-bin
+/bin/
+.settings
